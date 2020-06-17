@@ -15,8 +15,8 @@ objects:
   kind: ImageStream
   metadata:
     labels:
-      application: nodejs
-    name: nodejs
+      application: node
+    name: node
   spec:
     dockerImageRepostitory: ${NODEJS_IMAGE}:${VERSION}
     lookupPolicy:
@@ -50,7 +50,7 @@ objects:
         forcePull: true
         from:
           kind: ImageStreamTag
-          name: node:${VERSION}
+          name: ${NODEJS_IMAGE}:${VERSION}
         dockerfilePath: Dockerfile
         noCache: true
       type: Source
