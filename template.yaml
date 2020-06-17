@@ -31,7 +31,7 @@ objects:
         name: ${VERSION}
         from:
           kind: DockerImage
-          name: nodejs:${VERSION}
+          name: ${NODEJS_IMAGE}:${VERSION}
 - apiVersion: v1
   kind: BuildConfig
   metadata:
@@ -50,7 +50,7 @@ objects:
         forcePull: true
         from:
           kind: ImageStreamTag
-          name: ${NODEJS_IMAGE}:${VERSION}
+          name: node:${VERSION}
         dockerfilePath: Dockerfile
         noCache: true
       type: Source
