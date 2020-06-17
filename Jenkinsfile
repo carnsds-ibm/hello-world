@@ -25,13 +25,13 @@ pipeline {
     }
     // Run NPM unit tests
     stage('npm test') {
-      node {
         steps {
-          sh """
-          env
-          npm -v 
-          npm test
-          """
+          node {
+            sh """
+            env
+            npm -v 
+            npm test
+            """
         }
       }
     }
@@ -46,12 +46,12 @@ pipeline {
     
 		// Deploy to prod. 
     stage('npm run'){
-      node {
         steps {
-          sh """
-          npm -v 
-          npm start
-          """
+          node {
+            sh """
+            npm -v 
+            npm start
+            """
         }
       }
     }
