@@ -9,12 +9,7 @@ openshift.withCluster() {
 }
 
 pipeline {
-  agent {
-    docker {
-            image 'node:latest' 
-            args '-p 1337:1337' 
-        }
-  }
+  agent none
   // environment {
   //      CI = 'true'
   // }
