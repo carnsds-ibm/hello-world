@@ -15,8 +15,8 @@ objects:
   kind: ImageStream
   metadata:
     labels:
-      application: node
-    name: node
+      application: node-hw
+    name: node-hw
   spec:
     dockerImageRepostitory: ${NODEJS_IMAGE}:${VERSION}
     lookupPolicy:
@@ -50,7 +50,7 @@ objects:
         forcePull: true
         from:
           kind: ImageStreamTag
-          name: ${NODEJS_IMAGE}:${VERSION}
+          name: node-hw:${VERSION}
         dockerfilePath: Dockerfile
         noCache: true
       type: Source
@@ -96,4 +96,4 @@ parameters:
 - description: Node JS Image Version -
   name: VERSION
   required: true
-  value: kernel-ubi-min
+  value: latest
