@@ -9,9 +9,7 @@ openshift.withCluster() {
 }
 
 pipeline {
-  agent {
-    label "node"
-  }
+  agent none
   stages {
     stage('preamble') {
         steps {
