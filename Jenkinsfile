@@ -6,6 +6,9 @@ openshift.withCluster() {
   env.APP_NAME = "nodejs-hello-world"
   echo "Starting Pipeline for ${APP_NAME}..."
   env.BUILD = "${env.NAMESPACE}"
+  env.DEV = "cdj-dev"
+  env.PROD = "cdj-prod"
+  env.APP = "hello-world"
 }
 
 pipeline {
@@ -33,12 +36,24 @@ pipeline {
             openshift.withProject() {
               timeout (time: 10, unit: 'MINUTES') {
                 // run the build and wait for completion
-                def build = openshift.selector("bc", "hello-world").startBuild("--from-dir=.")
+                def build = openshift.selector("bc", "${env.APP}").startBuild("--from-dir=.")
                                     
                 // print the build logs
                 build.logs('-f')
               }
             }        
+          }
+        }
+      }
+    }
+
+    stage('Promote to Dev') {
+      steps {
+        script {
+          openshift.withCluster() {
+            openshift.withProject() {
+              openshift.tag("${env.BUILD}/${env.APP}:latest", "${env.DEV}/${env.APP_NAME}:latest")
+            }
           }
         }
       }
@@ -53,13 +68,15 @@ pipeline {
     }
     
 		// Deploy to prod. 
-    stage('npm run'){
+    stage('promote to prod'){
         steps {
-          sh """
-          npm -v 
-          npm start
-          """
+          script {
+            openshift.withCluster() {
+              openshift.withProject() {
+                openshift.tag("${env.BUILD}/${env.APP}:latest", "${env.PROD}/${env.APP_NAME}:latest")
+              }
+            }
+          }
       }
-    }
   }
 }
