@@ -10,7 +10,7 @@ openshift.withCluster() {
 
 pipeline {
   agent {
-    docker 'node:latest'
+    podman 'node:latest'
   }
 
   stages {
