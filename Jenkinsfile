@@ -9,7 +9,7 @@ openshift.withCluster() {
 }
 
 pipeline {
-  agent none
+  agent any
   stages {
     stage('preamble') {
         steps {
@@ -26,13 +26,11 @@ pipeline {
     // Run NPM unit tests
     stage('npm test') {
         steps {
-          node {
-            sh """
-            env
-            npm -v 
-            npm test
-            """
-        }
+          sh """
+          env
+          npm -v 
+          npm test
+          """
       }
     }
 
@@ -47,12 +45,10 @@ pipeline {
 		// Deploy to prod. 
     stage('npm run'){
         steps {
-          node {
-            sh """
-            npm -v 
-            npm start
-            """
-        }
+          sh """
+          npm -v 
+          npm start
+          """
       }
     }
   }
