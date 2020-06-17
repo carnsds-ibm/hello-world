@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Template
 labels:
-  template: hello-world-nodejs
+  template: hello-world
 metadata:
-  name: hello-world-nodejs
+  name: hello-world
 objects:
 - apiVersion: v1
   kind: ImageStream
@@ -50,7 +50,7 @@ objects:
         forcePull: true
         from:
           kind: ImageStreamTag
-          name: nodejs-hello-world:${HELLOWORLD_VERSION}
+          name: hello-world:${HELLOWORLD_VERSION}
         dockerfilePath: Dockerfile
         noCache: true
       type: Source
