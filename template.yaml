@@ -18,7 +18,7 @@ objects:
       application: nodejs
     name: nodejs
   spec:
-    dockerImageRepostitory: ${NODEJS_IMAGE}:${HELLOWORLD_VERSION}
+    dockerImageRepostitory: ${NODEJS_IMAGE}:${VERSION}
     lookupPolicy:
       local: false
     tags:
@@ -26,12 +26,12 @@ objects:
         name: latest
         from:
           kind: DockerImage
-          name: ${NODEJS_IMAGE}:${HELLOWORLD_VERSION}
+          name: ${NODEJS_IMAGE}:${VERSION}
       - annotations: null
-        name: ${HELLOWORLD_VERSION}
+        name: ${VERSION}
         from:
           kind: DockerImage
-          name: ${NODEJS_IMAGE}:${HELLOWORLD_VERSION}
+          name: ${NODEJS_IMAGE}:${VERSION}
 - apiVersion: v1
   kind: BuildConfig
   metadata:
@@ -50,7 +50,7 @@ objects:
         forcePull: true
         from:
           kind: ImageStreamTag
-          name: hello-world:${HELLOWORLD_VERSION}
+          name: ${NODEJS_IMAGE}:${VERSION}
         dockerfilePath: Dockerfile
         noCache: true
       type: Source
@@ -94,6 +94,6 @@ parameters:
   required: true
   value: node
 - description: Node JS Image Version -
-  name: HELLOWORLD_VERSION
+  name: VERSION
   required: true
   value: kernel-ubi-min
