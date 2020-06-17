@@ -31,7 +31,7 @@ objects:
         name: ${VERSION}
         from:
           kind: DockerImage
-          name: ${NODEJS_IMAGE}:${VERSION}
+          name: nodejs:${VERSION}
 - apiVersion: v1
   kind: BuildConfig
   metadata:
