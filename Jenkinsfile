@@ -9,10 +9,9 @@ openshift.withCluster() {
 }
 
 pipeline {
-  agent none
-  // environment {
-  //      CI = 'true'
-  // }
+  agent {
+    label "node"
+  }
   stages {
     stage('preamble') {
         steps {
