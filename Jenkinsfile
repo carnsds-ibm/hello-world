@@ -59,6 +59,18 @@ pipeline {
       }
     }
 
+    stage('Spin up pod w/ Jenkins for Dev') {
+      steps {
+        script {
+          openshift.withCluster() {
+            openshift.withProject() {
+              openshift.tag("${env.BUILD}/${env.APP}:latest", "${env.DEV}/${env.APP}:latest")
+            }
+          }
+        }
+      }
+    }
+
     stage('Promotion gate') {
       steps {
         script {
