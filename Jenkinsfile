@@ -52,7 +52,7 @@ pipeline {
         script {
           openshift.withCluster() {
             openshift.withProject() {
-              openshift.tag("${env.BUILD}/${env.APP}:latest", "${env.DEV}/${env.APP_NAME}:latest")
+              openshift.tag("${env.BUILD}/${env.APP}:latest", "${env.DEV}/${env.APP}:latest")
             }
           }
         }
@@ -73,7 +73,7 @@ pipeline {
           script {
             openshift.withCluster() {
               openshift.withProject() {
-                openshift.tag("${env.BUILD}/${env.APP}:latest", "${env.PROD}/${env.APP_NAME}:latest")
+                openshift.tag("${env.BUILD}/${env.APP}:latest", "${env.PROD}/${env.APP}:latest")
               }
             }
           }
