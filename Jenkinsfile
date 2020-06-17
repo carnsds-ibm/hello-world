@@ -9,9 +9,7 @@ openshift.withCluster() {
 }
 
 pipeline {
-  agent {
-    podman 'node:latest'
-  }
+  agent docker
 
   stages {
     stage('preamble') {
@@ -27,7 +25,7 @@ pipeline {
         }
     }
     // Run NPM unit tests
-    stage('npm test') {
+    stage('build') {
         steps {
           sh """
           env
