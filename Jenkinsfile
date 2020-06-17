@@ -1,5 +1,5 @@
 // Jenkinsfile for NodeJS Hello World - CI/CD
-def templateName = 'cdj-hello-world'
+def templateName = 'hello-world-nodejs'
 
 openshift.withCluster() {
   env.NAMESPACE = openshift.project()
