@@ -3,7 +3,7 @@ def templateName = 'hello-world-nodejs'
 
 openshift.withCluster() {
   env.NAMESPACE = openshift.project()
-  env.APP_NAME = "${JOB_NAME}".replaceAll(/-build.*/, '')
+  env.APP_NAME = "nodejs-hello-world".replaceAll(/-build.*/, '')
   echo "Starting Pipeline for ${APP_NAME}..."
   env.BUILD = "${env.NAMESPACE}"
 }
