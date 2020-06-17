@@ -9,7 +9,7 @@ openshift.withCluster() {
 }
 
 pipeline {
-  agent docker
+  agent any
 
   stages {
     stage('preamble') {
