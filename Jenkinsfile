@@ -10,8 +10,14 @@ openshift.withCluster() {
 
 pipeline {
   agent {
-    label "npm"
+    docker {
+            image 'node:latest' 
+            args '-p 1337:1337' 
+        }
   }
+  // environment {
+        CI = 'true'
+  // }
   stages {
     stage('preamble') {
         steps {
