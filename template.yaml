@@ -65,6 +65,8 @@ objects:
       git:
         uri: ${SOURCE_URL}
         ref: ${SOURCE_REF}
+      sourceSecret:
+        name: git-secret
     strategy:
       jenkinsPipelineStrategy:
         jenkinsfilePath: Jenkinsfile
@@ -73,7 +75,7 @@ objects:
             value: ${APPLICATION_NAME}
     triggers:
     - github:
-        secret: "mysecret"
+        secret: "git-secret"
       type: GitHub
 parameters:
 - description: The name for the application.
